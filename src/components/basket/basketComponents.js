@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 import classes from "./basketComponent.module.css";
 import classNames from "classnames";
-
+import BasketRollComponent from "./rollBasket/rollBasketComponent";
 const BasketComponent = (props) => {
-  const [orderCounter, setOrderCounter] = useState(0);
+  const [orderCounter, setOrderCounter] = useState(1);
+  const [rolls, setRolls] = useState([]);
+
+  const rollsBasket = (
+    <BasketRollComponent
+      name="Филадельфия хит ролл"
+      count="6"
+      weight="180"
+      currency="300"
+      img="assets/img/roll/philadelphia.jpg"
+      counter={props.counter}
+    />
+  );
   const order = (
-    <div className="cart-wrapper">
+    <div className={classes.cart_wrapper}>
+      {rollsBasket}
       <div className={classNames(classes.cart_total)}>
         <p>
           <span className="h5">Доставка:</span>{" "}
-          <span className={classNames("delivery-cost", "free")}>бесплатно</span>{" "}
+          <span className={classNames(classes.delivery_cost, classes.free)}>
+            бесплатно
+          </span>{" "}
         </p>
         <p>
           <span className="h5">Итого:</span>{" "}
@@ -20,7 +35,7 @@ const BasketComponent = (props) => {
     </div>
   );
   const orderForm = (
-    <div id="order-form" className={classNames("card-body", "border-top")}>
+    <div className={classNames("card-body", "border-top")}>
       <h5 className="card-title">Оформить заказ</h5>
       <form>
         <div className="form-group">
@@ -29,13 +44,14 @@ const BasketComponent = (props) => {
             className="form-control"
             placeholder="Ваш номер телефона"
           />
+          <button type="submit" className={classNames("btn", "btn-primary")}>
+            Заказать
+          </button>
         </div>
-        <button type="submit" className={classNames("btn", "btn-primary")}>
-          Заказать
-        </button>
       </form>
     </div>
   );
+
   const emptyBasket = (
     <div
       data-cart-empty

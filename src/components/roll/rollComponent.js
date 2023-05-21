@@ -4,7 +4,6 @@ import classNames from "classnames";
 
 const RollComponent = (props) => {
   const [counter, setCounter] = useState(1);
-
   return (
     <div className="col-md-6">
       <div className="card mb-4" data-id="01">
@@ -12,9 +11,7 @@ const RollComponent = (props) => {
         <div className={classNames("card-body", "text-center")}>
           <h4 className={classes.item_title}>{props.name}</h4>
           <p>
-            <small data-items-in-box className="text-muted">
-              {props.count} шт.
-            </small>
+            <small className="text-muted">{props.count} шт.</small>
           </p>
 
           <div className={classes.details_wrapper}>
@@ -46,8 +43,11 @@ const RollComponent = (props) => {
             data-cart
             type="button"
             className={classNames("btn", "btn-block", "btn-outline-warning")}
+            onClick={() => {
+              props.updateX(counter);
+            }}
           >
-            + в корзину
+            Добавить в корзину
           </button>
         </div>
       </div>
