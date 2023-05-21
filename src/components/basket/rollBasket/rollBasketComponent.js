@@ -3,15 +3,17 @@ import classes from "./rollBasketComponent.module.css";
 import classNames from "classnames";
 
 const BasketRollComponent = (props) => {
-  const [counter, setCounter] = useState(props.counter);
-
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    setCounter(props.counter);
+    return () => {};
+  }, [props.counter]);
   return (
     <div className={classes.cart_item}>
       <div className={classes.cart_item__top}>
         <div className={classes.cart_item__img}>
           <img src={props.img} alt="" />
         </div>
-        <p>{props.counter}</p>
         <div className={classes.cart_item__desc}>
           <div className={classes.cart_item__title}>{props.name}</div>
           <div className={classes.cart_item__weight}>
@@ -43,6 +45,13 @@ const BasketRollComponent = (props) => {
               >
                 +
               </div>
+              <button
+                class="btn btn-danger btn-sm rounded-0"
+                type="button"
+                title="Delete"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
             </div>
 
             <div className={classes.price}>

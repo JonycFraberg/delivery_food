@@ -4,10 +4,10 @@ import RollComponent from "../roll/rollComponent";
 import BasketComponent from "../basket/basketComponents";
 
 const MainContainer = (props) => {
-  const [x, setX] = useState(0);
-  function updateX(value) {
-    setX(x + value);
-    console.log(x);
+  const [counter, setCounter] = useState(0);
+  function updateCounter(value) {
+    setCounter(counter + value);
+    console.log(counter);
   }
   return (
     <div className="container mb-5">
@@ -20,7 +20,7 @@ const MainContainer = (props) => {
               weight="180"
               currency="300"
               img="assets/img/roll/philadelphia.jpg"
-              updateX={updateX}
+              updateCounter={updateCounter}
             />
             {/* <RollComponent
               name="Калифорния темпура"
@@ -46,7 +46,7 @@ const MainContainer = (props) => {
           </div>
         </div>{" "}
         <div className="col-md-4">
-          <BasketComponent counter={x} />
+          <BasketComponent counter={counter} />
         </div>
       </div>
     </div>
