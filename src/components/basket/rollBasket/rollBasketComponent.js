@@ -45,13 +45,6 @@ const BasketRollComponent = (props) => {
               >
                 +
               </div>
-              <button
-                class="btn btn-danger btn-sm rounded-0"
-                type="button"
-                title="Delete"
-              >
-                <i class="fa fa-trash"></i>
-              </button>
             </div>
 
             <div className={classes.price}>
