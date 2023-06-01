@@ -1,3 +1,19 @@
+// function greatLess(num) {
+//   if ((num) => 0) {
+//     return true;
+//   } else if (num <= 0) {
+//     return false;
+//   }
+// }
+
+const path = require("path");
+
+console.log("Имя файла: ", path.basename(__filename));
+console.log("Имя директории: ", path.dirname(__filename));
+
+// console.log(greatLess(-10));
+
+// "Имя файла:  index.js"
 // render(props){
 //   return <div>
 //     <p>Наименование: {props.name}</p>
@@ -121,11 +137,11 @@
 
 // root.render(<Car name="Lexus" year="2021" />);
 
-let i = 0;
-let timer = () => {
-  setTimeout(() => {
-    console.log(++i);
-    timer();
-  }, 1000 * i);
-};
-timer();
+// let i = 0;
+// let timer = () => {
+//   setTimeout(() => {
+//     console.log(++i);
+//     timer();
+//   }, 1000 * i);
+// };
+// timer();

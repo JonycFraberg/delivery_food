@@ -44,7 +44,8 @@ const RollComponent = (props) => {
             type="button"
             className={classNames("btn", "btn-block", "btn-outline-warning")}
             onClick={() => {
-              props.updateCounter(counter);
+              props.updateCounter(counter, props.id);
+              setCounter(1);
             }}
           >
             Добавить в корзину

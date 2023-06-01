@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./basketComponent.module.css";
 import classNames from "classnames";
 import BasketRollComponent from "./rollBasket/rollBasketComponent";
+
 const BasketComponent = (props) => {
   const [orderCounter, setOrderCounter] = useState(1);
-  const [rolls, setRolls] = useState([]);
-
+  useEffect(() => {
+    console.log(props.basket);
+    return () => {};
+  });
   const rollsBasket = (
     <BasketRollComponent
       name="Филадельфия хит ролл"
