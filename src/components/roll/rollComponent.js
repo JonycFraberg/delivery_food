@@ -46,7 +46,6 @@ const RollComponent = (props) => {
             className={classNames("btn", "btn-block", "btn-outline-warning")}
             onClick={() => {
               props.updateRollCounter(counter, props.id);
-              props.updateCartCounter(counter, props.id);
             }}
           >
             Добавить в корзину
