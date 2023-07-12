@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 const RollComponent = (props) => {
   const [counter, setCounter] = useState(1);
+
   return (
     <div className="col-md-6">
       <div className="card mb-4" data-id="01">
@@ -44,8 +45,8 @@ const RollComponent = (props) => {
             type="button"
             className={classNames("btn", "btn-block", "btn-outline-warning")}
             onClick={() => {
-              props.updateCounter(counter, props.id);
-              setCounter(1);
+              props.updateRollCounter(counter, props.id);
+              props.updateCartCounter(counter, props.id);
             }}
           >
             Добавить в корзину

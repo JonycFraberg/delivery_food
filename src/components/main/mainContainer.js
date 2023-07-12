@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import nextId from "react-id-generator";
 import RollComponent from "../roll/rollComponent";
 import BasketComponent from "../basket/basketComponents";
@@ -44,33 +44,67 @@ let initRolls = [
 const MainContainer = (props) => {
   const [rolls, setRolls] = useState(initRolls);
   const [basket, setBasket] = useState([]);
+  useEffect(() => {
+    console.log(rolls.counter);
+    return () => {};
+  }, [rolls]);
   // const [counter, setCounter] = useState(0);
 
   // function updateCounter(value) {
   //   setCounter(counter + value);
   //   console.log(counter);
   // }
-  function updateCounter(value, id) {
-    setRolls(
-      rolls.map((roll) => {
-        if (roll.id === id) {
-          //roll.counter += value;
-          let flag = false;
-          let newBasket = basket.map((basketRoll) => {
-            if (basketRoll.id === id) {
-              flag = true;
-              return { ...basketRoll, counter: basketRoll.counter + value };
-            }
-            return basketRoll;
-          });
-          if (!flag) newBasket = [...basket, roll];
-
-          setBasket(newBasket);
-        }
-        return roll;
-      })
-    );
+  function updateRollCounter(value, id) {
+    console.log(value);
+    let newRolls = rolls.map((roll) => {
+      if (roll.id === id) {
+        return { ...roll, counter: roll.counter + value };
+      }
+      return roll;
+    });
+    setRolls(newRolls);
   }
+  function updateCartCounter(value, id) {
+    updateRollCounter(value, id);
+
+    rolls.forEach((roll) => {
+      if (roll.id === id) {
+        let flag = false;
+        let newBasket = basket.map((basketRoll) => {
+          if (basketRoll.id === id) {
+            flag = true;
+            return {
+              ...basketRoll,
+              counter: basketRoll.counter + value,
+            };
+          }
+          return basketRoll;
+        });
+        if (!flag) newBasket = [...basket, roll];
+        setBasket(newBasket);
+      }
+    });
+    // console.log(basket);
+    // console.log(newBasket);
+  }
+  // rolls.map((roll) => {
+  //   if (roll.id === id) {
+  //     //roll.counter += value;
+  //     let flag = false;
+  //     let newBasket = basket.map((basketRoll) => {
+  //       if (basketRoll.id === id) {
+  //         flag = true;
+  //         return { ...basketRoll, counter: basketRoll.counter + value };
+  //       }
+  //       return basketRoll;
+  //     });
+  //     if (!flag) newBasket = [...basket, roll];
+
+  //     setBasket(newBasket);
+  //   }
+  //   return basket;
+  // });
+
   const rows = rolls.map((roll) => {
     return (
       <RollComponent
@@ -82,7 +116,8 @@ const MainContainer = (props) => {
         currency={roll.currency}
         img={roll.img}
         counter={roll.counter}
-        updateCounter={updateCounter}
+        updateRollCounter={updateRollCounter}
+        updateCartCounter={updateCartCounter}
       />
     );
   });

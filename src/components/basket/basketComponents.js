@@ -5,6 +5,7 @@ import BasketRollComponent from "./rollBasket/rollBasketComponent";
 
 const BasketComponent = (props) => {
   const [orderCounter, setOrderCounter] = useState(1);
+  const [price, setPrice] = useState(0);
   useEffect(() => {
     console.log(props.basket);
     return () => {};
@@ -36,7 +37,7 @@ const BasketComponent = (props) => {
         </p>
         <p>
           <span className="h5">Итого:</span>{" "}
-          <span className={classes.total_price}>0</span>{" "}
+          <span className={classes.total_price}>{price}</span>{" "}
           <span className={classes.rouble}>₽</span>
         </p>
       </div>
