@@ -20,7 +20,7 @@ const BasketComponent = (props) => {
         weight={roll.weight}
         currency={roll.currency}
         img={roll.img}
-        counter={props.counter}
+        counter={roll.counter}
       />
     );
   });

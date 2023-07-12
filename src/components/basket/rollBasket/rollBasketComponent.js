@@ -3,7 +3,7 @@ import classes from "./rollBasketComponent.module.css";
 import classNames from "classnames";
 
 const BasketRollComponent = (props) => {
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(0);
   useEffect(() => {
     setCounter(props.counter);
     return () => {};
