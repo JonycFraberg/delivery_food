@@ -54,12 +54,12 @@ const MainContainer = (props) => {
     setRolls(
       rolls.map((roll) => {
         if (roll.id === id) {
-          roll.counter += value;
+          //roll.counter += value;
           let flag = false;
           let newBasket = basket.map((basketRoll) => {
             if (basketRoll.id === id) {
               flag = true;
-              return { ...basketRoll, counter: basketRoll.counter + 1 };
+              return { ...basketRoll, counter: basketRoll.counter + value };
             }
             return basketRoll;
           });
@@ -103,7 +103,7 @@ const MainContainer = (props) => {
           </div>
         </div>{" "}
         <div className="col-md-4">
-          <BasketComponent basket={basket} counter={rolls[0].counter} />
+          <BasketComponent basket={basket} />
         </div>
       </div>
     </div>
