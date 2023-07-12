@@ -9,16 +9,21 @@ const BasketComponent = (props) => {
     console.log(props.basket);
     return () => {};
   });
-  const rollsBasket = (
-    <BasketRollComponent
-      name="Филадельфия хит ролл"
-      count="6"
-      weight="180"
-      currency="300"
-      img="assets/img/roll/philadelphia.jpg"
-      counter={props.counter}
-    />
-  );
+
+  const rollsBasket = props.basket.map((roll) => {
+    return (
+      <BasketRollComponent
+        key={roll.id}
+        id={roll.id}
+        name={roll.name}
+        count={roll.count}
+        weight={roll.weight}
+        currency={roll.currency}
+        img={roll.img}
+        counter={props.counter}
+      />
+    );
+  });
   const order = (
     <div className={classes.cart_wrapper}>
       {rollsBasket}
