@@ -7,7 +7,7 @@ const BasketComponent = (props) => {
   const [orderCounter, setOrderCounter] = useState(1);
   const [price, setPrice] = useState(0);
   useEffect(() => {
-    console.log(props.basket);
+    //console.log(props.basket);
     return () => {};
   });
 

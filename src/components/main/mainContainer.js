@@ -45,8 +45,12 @@ const MainContainer = (props) => {
   const [rolls, setRolls] = useState(initRolls);
   const [basket, setBasket] = useState([]);
   useEffect(() => {
-    updateCartCounter();
-    console.log(rolls);
+    //console.log(rolls);
+    rolls.forEach((roll) => {
+      if (roll.counter > 0) {
+        updateCartCounter();
+      }
+    });
 
     return () => {};
   }, [rolls]);
@@ -57,21 +61,23 @@ const MainContainer = (props) => {
   //   console.log(counter);
   // }
   function updateRollCounter(value, id) {
+    //console.log(value, id);
     let newRolls = rolls.map((roll) => {
       if (roll.id === id) {
         return { ...roll, counter: value };
       }
       return roll;
     });
-
+    //console.log(newRolls);
     setRolls(newRolls);
   }
   function updateCartCounter() {
     rolls.forEach((roll) => {
-      if (roll.counter != 0) {
+      if (roll.counter !== 0) {
         let flag = false;
         let newBasket = basket.map((basketRoll) => {
           if (basketRoll.id === roll.id) {
+            //console.log("---------", basketRoll.id, roll.id);
             flag = true;
             return {
               ...basketRoll,
@@ -84,6 +90,13 @@ const MainContainer = (props) => {
         setBasket(newBasket);
       }
     });
+    let newRolls = rolls.map((roll) => {
+      if (roll.counter !== 0) {
+        return { ...roll, counter: 0 };
+      }
+      return roll;
+    });
+    setRolls(newRolls);
   }
   // rolls.map((roll) => {
   //   if (roll.id === id) {
