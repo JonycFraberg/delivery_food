@@ -4,12 +4,13 @@ import classNames from "classnames";
 import BasketRollComponent from "./rollBasket/rollBasketComponent";
 
 const BasketComponent = (props) => {
-  const [orderCounter, setOrderCounter] = useState(1);
+  const [orderCounter, setOrderCounter] = useState(0);
   const [price, setPrice] = useState(0);
   useEffect(() => {
     let s = 0;
     props.basket.forEach((rollBasket) => {
       s += Number(rollBasket.currency) * rollBasket.counter;
+      setOrderCounter(1);
     });
     if (s < 2000) s += 300;
     setPrice(s);
@@ -39,7 +40,11 @@ const BasketComponent = (props) => {
         <p>
           <span className="h5">Доставка:</span>{" "}
           <span className={classNames(classes.delivery_cost, classes.free)}>
-            {price < 2000 ? <p>300р</p> : <p>Бесплатно</p>}
+            {price < 2000 && orderCounter !== 0 ? (
+              <p>300р</p>
+            ) : (
+              <p>Бесплатно</p>
+            )}
           </span>{" "}
         </p>
         <p>
