@@ -51,7 +51,6 @@ const MainContainer = (props) => {
         updateCartCounter();
       }
     });
-
     return () => {};
   }, [rolls]);
   // const [counter, setCounter] = useState(0);

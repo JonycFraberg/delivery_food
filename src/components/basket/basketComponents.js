@@ -7,9 +7,16 @@ const BasketComponent = (props) => {
   const [orderCounter, setOrderCounter] = useState(1);
   const [price, setPrice] = useState(0);
   useEffect(() => {
+    let s = 0;
+    props.basket.forEach((rollBasket) => {
+      s += Number(rollBasket.currency) * rollBasket.counter;
+    });
+    if (s < 2000) s += 300;
+    setPrice(s);
+
     //console.log(props.basket);
     return () => {};
-  });
+  }, [props]);
 
   const rollsBasket = props.basket.map((roll) => {
     return (
@@ -32,7 +39,7 @@ const BasketComponent = (props) => {
         <p>
           <span className="h5">Доставка:</span>{" "}
           <span className={classNames(classes.delivery_cost, classes.free)}>
-            бесплатно
+            {price < 2000 ? <p>300р</p> : <p>Бесплатно</p>}
           </span>{" "}
         </p>
         <p>

@@ -46,7 +46,18 @@ const BasketRollComponent = (props) => {
                 +
               </div>
             </div>
-
+            <div
+              className={classes.del_roll_btn}
+              onClick={() => {
+                setCounter(0);
+              }}
+            >
+              <img
+                className={classes.del_roll_img}
+                src="assets/img/del_roll.png"
+                alt="no_pic"
+              />
+            </div>
             <div className={classes.price}>
               <div className={classes.price__currency}>{props.price}</div>
             </div>

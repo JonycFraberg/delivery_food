@@ -168,3 +168,12 @@
 .none {
 	display: none;
 }
+.del_roll_img{
+	margin-left: 70px;
+	padding: 5px;
+}
+.del_roll_img:hover{
+	background-color: #fa5252;
+	border-radius: 25%;
+	cursor: pointer;
+}
