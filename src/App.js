@@ -4,9 +4,9 @@ import MainContainer from "./components/main/mainContainer";
 // import Counter from "./components/x/counter";
 import { connect } from "react-redux";
 function App({ testStore }) {
+  console.log(testStore);
   return (
     <div>
-      <counter />
       <HeaderComponent />
       <MainContainer />
     </div>
