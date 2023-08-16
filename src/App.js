@@ -8,7 +8,7 @@ function App({ testStore }) {
   return (
     <div>
       <HeaderComponent />
-      <MainContainer />
+      <MainContainer testStore={testStore} />
     </div>
   );
 }

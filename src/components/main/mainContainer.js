@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import nextId from "react-id-generator";
 import RollComponent from "../roll/rollComponent";
 import BasketComponent from "../basket/basketComponents";
+import testReducer from "../../reducers/testReducer";
 let initRolls = [
   {
     id: nextId(),
@@ -41,7 +42,7 @@ let initRolls = [
   },
 ];
 
-const MainContainer = (props) => {
+const MainContainer = ({ testStore }) => {
   const [rolls, setRolls] = useState(initRolls);
   const [basket, setBasket] = useState([]);
   useEffect(() => {
@@ -53,6 +54,9 @@ const MainContainer = (props) => {
     });
     return () => {};
   }, [rolls]);
+
+  console.log(testStore);
+
   // const [counter, setCounter] = useState(0);
 
   // function updateCounter(value) {

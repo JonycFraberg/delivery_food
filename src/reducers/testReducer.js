@@ -7,7 +7,6 @@ const initRolls = [
     weight: "180",
     currency: "300",
     img: "assets/img/roll/philadelphia.jpg",
-    counter: 0,
   },
   {
     id: nextId(),
@@ -16,7 +15,6 @@ const initRolls = [
     weight: "205",
     currency: "250",
     img: "assets/img/roll/philadelphia.jpg",
-    counter: 0,
   },
   {
     id: nextId(),
@@ -25,7 +23,6 @@ const initRolls = [
     weight: "182",
     currency: "230",
     img: "assets/img/roll/philadelphia.jpg",
-    counter: 0,
   },
   {
     id: nextId(),
@@ -34,7 +31,6 @@ const initRolls = [
     weight: "230",
     currency: "320",
     img: "assets/img/roll/philadelphia.jpg",
-    counter: 0,
   },
 ];
 export default function testReducer(state = initRolls, action) {
