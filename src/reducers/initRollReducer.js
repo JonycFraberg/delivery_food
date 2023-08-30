@@ -33,10 +33,29 @@ const initRolls = [
     img: "assets/img/roll/philadelphia.jpg",
   },
 ];
-export default function testReducer(state = initRolls, action) {
-  if (action.type === "TEST_ACTION") {
-    return [...state, action.test];
+export default function initRollReducer(state = initRolls, action) {
+  if (action.type === "ADD_IN_BASKET") {
+    // console.log(action.roll.id, action.roll.count);
+    let new_state = state.map((roll) => {
+      if (roll.id === action.roll.id) {
+        return {
+          ...roll,
+          inBasket: true,
+          basketCount: roll.basketCount
+            ? action.roll.count + roll.basketCount
+            : action.roll.count,
+        };
+      } else {
+        return { ...roll };
+      }
+    });
+
+    console.log(new_state);
+    return new_state;
+    ///return [...state, action.rolls];
   }
   //console.log(action);
-  return state;
+  else {
+    return state;
+  }
 }

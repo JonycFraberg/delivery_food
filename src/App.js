@@ -4,11 +4,10 @@ import MainContainer from "./components/main/mainContainer";
 // import Counter from "./components/x/counter";
 import { connect } from "react-redux";
 function App({ testStore }) {
-  console.log(testStore);
   return (
     <div>
       <HeaderComponent />
-      <MainContainer testStore={testStore} />
+      <MainContainer Rolls={testStore} />
     </div>
   );
 }

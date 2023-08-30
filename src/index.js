@@ -6,9 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 import logger from "redux-logger";
-import reducer from "./reducers";
+import reducer from "./reducers/combineReducer";
 
 const store = configureStore({
   reducer,

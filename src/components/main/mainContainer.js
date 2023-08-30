@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import nextId from "react-id-generator";
 import RollComponent from "../roll/rollComponent";
 import BasketComponent from "../basket/basketComponents";
-import testReducer from "../../reducers/testReducer";
 let initRolls = [
   {
     id: nextId(),
@@ -42,7 +41,7 @@ let initRolls = [
   },
 ];
 
-const MainContainer = ({ testStore }) => {
+const MainContainer = ({ Rolls }) => {
   const [rolls, setRolls] = useState(initRolls);
   const [basket, setBasket] = useState([]);
   useEffect(() => {
@@ -54,8 +53,7 @@ const MainContainer = ({ testStore }) => {
     });
     return () => {};
   }, [rolls]);
-
-  console.log(testStore);
+  console.log(Rolls);
 
   // const [counter, setCounter] = useState(0);
 
@@ -119,7 +117,7 @@ const MainContainer = ({ testStore }) => {
   //   return basket;
   // });
 
-  const rows = rolls.map((roll) => {
+  const rows = Rolls.initRollReducer.map((roll) => {
     return (
       <RollComponent
         key={roll.id}
@@ -138,17 +136,7 @@ const MainContainer = ({ testStore }) => {
     <div className="container mb-5">
       <div className="row">
         <div className="col-md-8">
-          <div className="row">
-            {rows}
-            {/* <RollComponent
-              name="Филадельфия хит ролл"
-              count="6"
-              weight="180"
-              currency="300"
-              img="assets/img/roll/philadelphia.jpg"
-              updateCounter={updateCounter}
-            /> */}
-          </div>
+          <div className="row">{rows}</div>
         </div>{" "}
         <div className="col-md-4">
           <BasketComponent basket={basket} />
