@@ -1,23 +1,32 @@
 import { useState, useEffect } from "react";
 import classes from "./rollBasketComponent.module.css";
 import classNames from "classnames";
+import { connect } from "react-redux";
 
-const BasketRollComponent = (props) => {
-  const [counter, setCounter] = useState(0);
-  useEffect(() => {
-    setCounter(props.counter);
-    return () => {};
-  }, [props.counter]);
+const BasketRollComponent = ({
+  Rolls,
+  img,
+  key,
+  name,
+  count,
+  weight,
+  currency,
+  id,
+  basketCount,
+  price,
+  addInBasket,
+  deleteFromBasket,
+}) => {
   return (
     <div className={classes.cart_item}>
       <div className={classes.cart_item__top}>
         <div className={classes.cart_item__img}>
-          <img src={props.img} alt="" />
+          <img src={img} alt="" />
         </div>
         <div className={classes.cart_item__desc}>
-          <div className={classes.cart_item__title}>{props.name}</div>
+          <div className={classes.cart_item__title}>{name}</div>
           <div className={classes.cart_item__weight}>
-            {props.count} шт. / {props.weight} г.
+            {count} шт. / {weight} г.
           </div>
 
           <div className={classes.cart_item__details}>
@@ -31,16 +40,16 @@ const BasketRollComponent = (props) => {
               <div
                 className={classes.items__control}
                 onClick={() => {
-                  counter > 1 ? setCounter(counter - 1) : setCounter(1);
+                  basketCount > 1 ? addInBasket(id, -1) : addInBasket(id, 0);
                 }}
               >
                 -
               </div>
-              <div className={classes.items__current}>{counter}</div>
+              <div className={classes.items__current}>{basketCount}</div>
               <div
                 className={classes.items__control}
                 onClick={() => {
-                  setCounter(counter + 1);
+                  addInBasket(id, 1);
                 }}
               >
                 +
@@ -49,7 +58,8 @@ const BasketRollComponent = (props) => {
             <div
               className={classes.del_roll_btn}
               onClick={() => {
-                setCounter(0);
+                console.log(id);
+                deleteFromBasket(id);
               }}
             >
               <img
@@ -59,7 +69,7 @@ const BasketRollComponent = (props) => {
               />
             </div>
             <div className={classes.price}>
-              <div className={classes.price__currency}>{props.price}</div>
+              <div className={classes.price__currency}>{price}</div>
             </div>
           </div>
         </div>
@@ -67,4 +77,15 @@ const BasketRollComponent = (props) => {
     </div>
   );
 };
-export default BasketRollComponent;
+export default connect(
+  (state) => ({ Rolls: state }),
+  (dispatch) => ({
+    addInBasket: (id, count) => {
+      const roll = { id: id, count: count };
+      dispatch({ type: "ADD_IN_BASKET", roll });
+    },
+    deleteFromBasket: (id) => {
+      dispatch({ type: "DELETE_FROM_BASKET", id });
+    },
+  })
+)(BasketRollComponent);

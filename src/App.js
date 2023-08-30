@@ -3,16 +3,16 @@ import HeaderComponent from "./components/header/header";
 import MainContainer from "./components/main/mainContainer";
 // import Counter from "./components/x/counter";
 import { connect } from "react-redux";
-function App({ testStore }) {
+function App({ Rolls }) {
   return (
     <div>
       <HeaderComponent />
-      <MainContainer Rolls={testStore} />
+      <MainContainer Rolls={Rolls} />
     </div>
   );
 }
 
 export default connect(
-  (state) => ({ testStore: state }),
+  (state) => ({ Rolls: state }),
   (dispatch) => ({})
 )(App);

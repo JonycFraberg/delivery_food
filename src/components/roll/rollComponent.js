@@ -10,7 +10,6 @@ const RollComponent = ({
   weight,
   currency,
   id,
-  updateRollCounter,
   addInBasket,
 }) => {
   const [counter, setCounter] = useState(1);
@@ -56,6 +55,7 @@ const RollComponent = ({
             className={classNames("btn", "btn-block", "btn-outline-warning")}
             onClick={() => {
               addInBasket(id, counter);
+              setCounter(1);
             }}
           >
             Добавить в корзину
@@ -66,7 +66,7 @@ const RollComponent = ({
   );
 };
 export default connect(
-  (state) => ({ testStore: state }),
+  (state) => ({ Rolls: state }),
   (dispatch) => ({
     addInBasket: (id, count) => {
       const roll = { id: id, count: count };

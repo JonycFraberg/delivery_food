@@ -2,36 +2,33 @@ import React, { useState, useEffect } from "react";
 import classes from "./basketComponent.module.css";
 import classNames from "classnames";
 import BasketRollComponent from "./rollBasket/rollBasketComponent";
+import { connect } from "react-redux";
 
-const BasketComponent = (props) => {
-  const [orderCounter, setOrderCounter] = useState(0);
-  const [price, setPrice] = useState(0);
-  useEffect(() => {
-    let s = 0;
-    props.basket.forEach((rollBasket) => {
-      s += Number(rollBasket.currency) * rollBasket.counter;
-      setOrderCounter(1);
-    });
-    if (s < 2000) s += 300;
-    setPrice(s);
+const BasketComponent = ({ Rolls }) => {
+  let orderCounter = 0;
+  let price = 0;
 
-    //console.log(props.basket);
-    return () => {};
-  }, [props]);
+  const rollsBasket = Rolls.RollReducer.map((roll) => {
+    if (roll.inBasket) {
+      price =
+        price < 2000
+          ? price + 300 + roll.basketCount * roll.currency
+          : price + roll.basketCount * roll.currency;
 
-  const rollsBasket = props.basket.map((roll) => {
-    return (
-      <BasketRollComponent
-        key={roll.id}
-        id={roll.id}
-        name={roll.name}
-        count={roll.count}
-        weight={roll.weight}
-        currency={roll.currency}
-        img={roll.img}
-        counter={roll.counter}
-      />
-    );
+      orderCounter = orderCounter + 1;
+      return (
+        <BasketRollComponent
+          key={roll.id}
+          id={roll.id}
+          name={roll.name}
+          count={roll.count}
+          weight={roll.weight}
+          currency={roll.currency}
+          img={roll.img}
+          basketCount={roll.basketCount}
+        />
+      );
+    }
   });
   const order = (
     <div className={classes.cart_wrapper}>
@@ -41,9 +38,9 @@ const BasketComponent = (props) => {
           <span className="h5">Доставка:</span>{" "}
           <span className={classNames(classes.delivery_cost, classes.free)}>
             {price < 2000 && orderCounter !== 0 ? (
-              <p>300р</p>
+              <span>300р</span>
             ) : (
-              <p>Бесплатно</p>
+              <span>Бесплатно</span>
             )}
           </span>{" "}
         </p>
@@ -92,4 +89,7 @@ const BasketComponent = (props) => {
     </div>
   );
 };
-export default BasketComponent;
+export default connect(
+  (state) => ({ Rolls: state }),
+  (dispatch) => ({})
+)(BasketComponent);

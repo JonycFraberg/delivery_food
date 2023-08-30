@@ -1,5 +1,5 @@
 import nextId from "react-id-generator";
-const initRolls = [
+const Rolls = [
   {
     id: nextId(),
     name: "Филадельфия хит ролл",
@@ -33,7 +33,7 @@ const initRolls = [
     img: "assets/img/roll/philadelphia.jpg",
   },
 ];
-export default function initRollReducer(state = initRolls, action) {
+export default function RollReducer(state = Rolls, action) {
   if (action.type === "ADD_IN_BASKET") {
     // console.log(action.roll.id, action.roll.count);
     let new_state = state.map((roll) => {
@@ -50,10 +50,26 @@ export default function initRollReducer(state = initRolls, action) {
       }
     });
 
-    console.log(new_state);
+    // console.log(new_state);
     return new_state;
     ///return [...state, action.rolls];
+  } else if (action.type === "DELETE_FROM_BASKET") {
+    let new_state = state.map((roll) => {
+      if (roll.id === action.id) {
+        return {
+          ...roll,
+          inBasket: false,
+          basketCount: 0,
+        };
+      } else {
+        return { ...roll };
+      }
+    });
+
+    // console.log(new_state);
+    return new_state;
   }
+
   //console.log(action);
   else {
     return state;
