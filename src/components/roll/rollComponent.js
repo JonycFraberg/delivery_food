@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import classes from "./rollComponent.module.css";
+import "./rollComponent.css";
 import classNames from "classnames";
 import { connect } from "react-redux";
 
@@ -17,35 +17,35 @@ const RollComponent = ({
   return (
     <div className="col-md-6">
       <div className="card mb-4" data-id="01">
-        <img className={classes.product_img} src={img} alt="" />
+        <img className="product_img" src={img} alt="" />
         <div className={classNames("card-body", "text-center")}>
-          <h4 className={classes.item_title}>{name}</h4>
+          <h4 className="item_title">{name}</h4>
           <p>
             <small className="text-muted">{count} шт.</small>
           </p>
 
-          <div className={classes.details_wrapper}>
-            <div className={classNames(classes.items, "counter-wrapper")}>
+          <div className="details_wrapper">
+            <div className={classNames("items", "counter-wrapper")}>
               <div
-                className={classes.items__control}
+                className="items__control"
                 onClick={() =>
                   counter > 1 ? setCounter(counter - 1) : setCounter(1)
                 }
               >
                 -
               </div>
-              <div className={classes.items__current}>{counter}</div>
+              <div className="items__current">{counter}</div>
               <div
-                className={classes.items__control}
+                className="items__control"
                 onClick={() => setCounter(counter + 1)}
               >
                 +
               </div>
             </div>
 
-            <div className={classes.price}>
-              <div className={classes.price__weight}>{weight}г.</div>
-              <div className={classes.price__currency}>{currency} ₽</div>
+            <div className="price">
+              <div className="price__weight">{weight}г.</div>
+              <div className="price__currency">{currency} ₽</div>
             </div>
           </div>
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import classes from "./basketComponent.module.css";
+import "./basketComponent.css";
 import classNames from "classnames";
 import BasketRollComponent from "./rollBasket/rollBasketComponent";
 import { connect } from "react-redux";
 
-const BasketComponent = ({ Rolls }) => {
+const BasketComponent = ({ Rolls, Order }) => {
   let orderCounter = 0;
   let price = 0;
 
@@ -31,12 +31,12 @@ const BasketComponent = ({ Rolls }) => {
     }
   });
   const order = (
-    <div className={classes.cart_wrapper}>
+    <div className="cart_wrapper">
       {rollsBasket}
-      <div className={classNames(classes.cart_total)}>
+      <div className={classNames("cart_total")}>
         <p>
           <span className="h5">Доставка:</span>{" "}
-          <span className={classNames(classes.delivery_cost, classes.free)}>
+          <span className={classNames("delivery_cost", "free")}>
             {price < 2000 && orderCounter !== 0 ? (
               <span>300р</span>
             ) : (
@@ -46,8 +46,8 @@ const BasketComponent = ({ Rolls }) => {
         </p>
         <p>
           <span className="h5">Итого:</span>{" "}
-          <span className={classes.total_price}>{price}</span>{" "}
-          <span className={classes.rouble}>₽</span>
+          <span className={"total_price"}>{price}</span>{" "}
+          <span className={"rouble"}>₽</span>
         </p>
       </div>
     </div>
@@ -55,7 +55,12 @@ const BasketComponent = ({ Rolls }) => {
   const orderForm = (
     <div className={classNames("card-body", "border-top")}>
       <h5 className="card-title">Оформить заказ</h5>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          Order(price);
+        }}
+      >
         <div className="form-group">
           <input
             type="text"
@@ -91,5 +96,10 @@ const BasketComponent = ({ Rolls }) => {
 };
 export default connect(
   (state) => ({ Rolls: state }),
-  (dispatch) => ({})
+  (dispatch) => ({
+    Order: (price) => {
+      const order = { price: price };
+      dispatch({ type: "ORDER", order });
+    },
+  })
 )(BasketComponent);

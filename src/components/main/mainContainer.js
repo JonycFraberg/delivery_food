@@ -19,16 +19,18 @@ const MainContainer = ({ Rolls }) => {
     );
   });
   return (
-    <div className="container mb-5">
-      <div className="row">
-        <div className="col-md-8">
-          <div className="row">{rows}</div>
-        </div>{" "}
-        <div className="col-md-4">
-          <BasketComponent />
+    <>
+      <div className="container mb-5">
+        <div className="row">
+          <div className="col-md-8">
+            <div className="row">{rows}</div>
+          </div>{" "}
+          <div className="col-md-4">
+            <BasketComponent />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default MainContainer;
