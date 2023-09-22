@@ -1,0 +1,24 @@
+.roll{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.roll_img{
+    width: 120px;
+}
+.roll_details{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: flex-start;
+}
+.roll_name{
+    font-size: 18px;
+    font-weight: 600;
+}
+.roll_count{
+    font-size: 18px;
+    font-weight: 400;
+}

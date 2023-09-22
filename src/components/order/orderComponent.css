@@ -1,5 +1,5 @@
 .order{
-    display: none;
+    display:none;
     width: 100%;
     height: 100%;
     background-color: rgba(16, 62, 77, 0.9);
@@ -8,16 +8,59 @@
     left: 0;
     z-index: 1000;
 }
+.none{
+    display:none;
+}
+.show{
+    display: block;
+}
 .order_check{
     max-width: 700px;
     min-height: 200px;
     width: 100%;
-    margin: auto;
+    margin:auto;
+    margin-top: 200px;
     background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .order_title{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+.order_rolls{
+
+}
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.total_price {
+    font-size: 20px;
+    padding: 0px 0px 5px 20px;
+    font-weight: 600;
+	color: #EB5A1E;
+}
+.adress{
+    font-size: 18px;
+    padding: 0px 0px 5px 10px;
+    font-weight: 300;
+}
+.phone{
+    font-size: 18px;
+    padding: 0px 0px 5px 10px;
+    font-weight: 300;
+}
+.rouble {
+    font-size: 20px;
+    padding: 0px 0px 5px 5px;
+    font-weight: 600;
+	color: #EB5A1E;
 }

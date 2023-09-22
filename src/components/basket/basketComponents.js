@@ -5,6 +5,8 @@ import BasketRollComponent from "./rollBasket/rollBasketComponent";
 import { connect } from "react-redux";
 
 const BasketComponent = ({ Rolls, Order }) => {
+  const [phone, setPhone] = useState("");
+  const [adress, setAdress] = useState("");
   let orderCounter = 0;
   let price = 0;
 
@@ -58,7 +60,7 @@ const BasketComponent = ({ Rolls, Order }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          Order(price);
+          Order(price, Rolls.RollReducer, phone, adress, true);
         }}
       >
         <div className="form-group">
@@ -66,6 +68,21 @@ const BasketComponent = ({ Rolls, Order }) => {
             type="text"
             className="form-control"
             placeholder="Ваш номер телефона"
+            value={phone}
+            onChange={(e) => {
+              // e.preventDefault();
+              setPhone(e.target.value);
+            }}
+          />{" "}
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ваш адрес (улица,дом,кв)"
+            value={adress}
+            onChange={(e) => {
+              // e.preventDefault();
+              setAdress(e.target.value);
+            }}
           />
           <button type="submit" className={classNames("btn", "btn-primary")}>
             Заказать
@@ -97,8 +114,14 @@ const BasketComponent = ({ Rolls, Order }) => {
 export default connect(
   (state) => ({ Rolls: state }),
   (dispatch) => ({
-    Order: (price) => {
-      const order = { price: price };
+    Order: (price, rolls, phone, adress, show) => {
+      const order = {
+        rolls: rolls,
+        price: price,
+        phone: phone,
+        adress: adress,
+        show: true,
+      };
       dispatch({ type: "ORDER", order });
     },
   })
