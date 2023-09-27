@@ -20,12 +20,14 @@
     width: 100%;
     margin:auto;
     margin-top: 200px;
+    padding-bottom: 20px;
     background-color: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 1.4%;
 }
 .order_title{
     display: flex;
@@ -59,8 +61,14 @@
     font-weight: 300;
 }
 .rouble {
-    font-size: 20px;
-    padding: 0px 0px 5px 5px;
+    font-size: 16px;
+    padding: 0px 0px 3px 1px;
     font-weight: 600;
 	color: #EB5A1E;
+}
+.close{
+    display: block;
+    position: absolute;
+    top:0;
+    right: 0;
 }

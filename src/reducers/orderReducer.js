@@ -10,5 +10,11 @@ export default function OrderReducer(state = RollsOrder, action) {
       show: action.order.show,
     };
   }
+  if (action.type === "ORDER_SHOW") {
+    return {
+      ...state,
+      show: action.show,
+    };
+  }
   return state;
 }

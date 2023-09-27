@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import classes from "./orderComponent.css";
 import classNames from "classnames";
 import OrderRollComponent from "./orderRoll/orderRoll";
-const Order = ({ Order }) => {
+const Order = ({ Order, orderShow }) => {
   const [show, setShow] = useState(false);
+
   const rows = Order.rolls
     ? Order.rolls.map((roll) => {
         if (roll.inBasket) {
@@ -26,7 +27,19 @@ const Order = ({ Order }) => {
     >
       {!show ? (
         <div className="order_check">
-          <button className="close">x</button>
+          <button
+            className={classNames(
+              "btn",
+              "btn-block",
+              "btn-outline-dark",
+              "close"
+            )}
+            onClick={() => {
+              orderShow(false);
+            }}
+          >
+            x
+          </button>
           <h3 className="order_title">Ваш заказ</h3>
           <div className="order_rolls">{rows}</div>
           <div className="adress">
@@ -40,11 +53,34 @@ const Order = ({ Order }) => {
             <span className="total_price">{Order.price}</span>{" "}
             <span className="rouble">₽</span>
           </div>
-          <button onClick={() => setShow(true)}>Оформить заказ</button>
+          <button
+            className={classNames("btn", "btn-block", "btn-primary")}
+            onClick={() => setShow(true)}
+          >
+            Оформить заказ
+          </button>
         </div>
       ) : (
         <div className="order_check">
+          <button
+            className={classNames(
+              "btn",
+              "btn-block",
+              "btn-outline-dark",
+              "close"
+            )}
+            onClick={() => {
+              orderShow(false);
+              setShow(false);
+            }}
+          >
+            x
+          </button>
           <h3 className="order_title">Ваш заказ оформлен</h3>
+          <span className="h5">
+            Заказ будет доставлен по адресу: {Order.adress}
+          </span>{" "}
+          <span>Курьер доставит заказ в течении 30 минут</span>
         </div>
       )}
     </div>
@@ -52,5 +88,9 @@ const Order = ({ Order }) => {
 };
 export default connect(
   (state) => ({ Order: state.OrderReducer }),
-  (dispatch) => ({})
+  (dispatch) => ({
+    orderShow: (show) => {
+      dispatch({ type: "ORDER_SHOW", show });
+    },
+  })
 )(Order);
